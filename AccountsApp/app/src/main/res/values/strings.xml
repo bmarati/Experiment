@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AccountsApp</string>
+    <string name="title_home">Accounts</string>
+    <string name="title_dashboard">Camera</string>
+    <string name="download_pdf">Download PDF</string>
+    <string name="view_pdf">View PDF</string>
+    <string name="capturedimage">CapturedImage</string>
+    <string name="capture">Capture</string>
+</resources>
