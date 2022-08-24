@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.AccountViewHolder> {
 
-    private ArrayList<Account> courseModalArrayList;
+    private ArrayList<Account> accounts;
     private Context context;
 
-    public AccountsAdapter(ArrayList<Account> courseModalArrayList, Context context) {
-        this.courseModalArrayList = courseModalArrayList;
+    public AccountsAdapter(ArrayList<Account> accounts, Context context) {
+        this.accounts = accounts;
         this.context = context;
     }
 
@@ -32,7 +32,7 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
 
     @Override
     public void onBindViewHolder(@NonNull AccountViewHolder holder, int position) {
-        Account modal = courseModalArrayList.get(position);
+        Account modal = accounts.get(position);
         holder.name.setText(modal.getName());
         holder.accountId.setText(modal.getId());
         holder.amount.setText(String.format("%s", modal.getAmount()));
@@ -40,7 +40,7 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
 
     @Override
     public int getItemCount() {
-        return courseModalArrayList.size();
+        return accounts.size();
     }
 
     public static class AccountViewHolder extends RecyclerView.ViewHolder {

@@ -2,11 +2,11 @@ package com.example.accountsapp.ui.dashboard.data;
 
 public class Account {
 
-    private int id;
+    private String id;
     private String name;
-    private double amount;
+    private String amount;
 
-    public Account(int id,String name, double amount) {
+    public Account(String id,String name, String amount) {
         this.id = id;
         this.name = name;
         this.amount = amount;
@@ -20,19 +20,22 @@ public class Account {
         this.name = name;
     }
 
-    public double getAmount() {
+    public String getAmount() {
         return amount;
     }
+    public Double getAmountAsDouble() {
+        return Double.valueOf(amount);
+    }
 
-    public void setAmount(double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

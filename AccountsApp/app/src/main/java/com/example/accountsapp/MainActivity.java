@@ -2,6 +2,7 @@ package com.example.accountsapp;
 
 import android.os.Bundle;
 
+import com.example.accountsapp.ui.dashboard.VolleySingleton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        VolleySingleton.getInstance(this);
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

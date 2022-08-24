@@ -35,19 +35,22 @@ public class AccountsViewModel extends ViewModel {
         StringRequest stringRequest = new StringRequest( url,
                 stringResponse -> {
                     try {
-                        Gson gson = new Gson();
-                        JsonParser jsonParser = new JsonParser();
-                        JsonArray response = (JsonArray) jsonParser.parse(stringResponse);
-//                        JSONArray response=new JSONArray(stringResponse);
+//                        Gson gson = new Gson();
+//                        JsonParser jsonParser = new JsonParser();
+//                        JsonArray response = (JsonArray) jsonParser.parse(stringResponse);
+                        JSONArray response=new JSONArray(stringResponse);
                         dataModalArrayList = new ArrayList<>();
-                        for (int i = 0; i < response.size(); i++) {
-//                            Js responseObj = response.get(i);
-//
-//                            int id = responseObj.getInt("ActID");
-//                            String name = responseObj.getString("ActName");
-//                            double amount = responseObj.getDouble("amount");
-//                            dataModalArrayList.add(new Account(id, name, amount));
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject responseObj = response.getJSONObject(i);
+
+                            String id = responseObj.getString("ActID");
+                            String name = responseObj.getString("ActName");
+                            String amount = responseObj.getString("amount");
+                            dataModalArrayList.add(new Account(id, name, amount));
                         }
+                        double total = dataModalArrayList.stream().mapToDouble(Account::getAmountAsDouble).sum();
+                        dataModalArrayList.add(0,new Account("Act ID","Act Name"   ,"Amount"));
+                        dataModalArrayList.add(new Account("Total"," ",total+""));
                         accountsData.setValue(dataModalArrayList);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -61,8 +64,9 @@ public class AccountsViewModel extends ViewModel {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = VolleySingleton.getRequestQueue();
-        if(requestQueue != null)
-        requestQueue.add(stringRequest);
+        if(requestQueue != null) {
+            requestQueue.add(stringRequest);
+        }
     }
 
     public LiveData<String> getText() {

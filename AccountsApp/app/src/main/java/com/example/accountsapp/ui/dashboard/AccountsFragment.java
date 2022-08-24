@@ -32,8 +32,6 @@ public class AccountsFragment extends Fragment {
         AccountsViewModel accountsViewModel =
                 new ViewModelProvider(this).get(AccountsViewModel.class);
 
-        VolleySingleton.getInstance(this.requireActivity());
-
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         accounts_list = root.findViewById(R.id.accounts);
